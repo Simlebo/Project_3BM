@@ -24,20 +24,20 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>350</x>
+      <x>270</x>
       <y>280</y>
-      <width>81</width>
+      <width>251</width>
       <height>26</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Push to show Hello World</string>
     </property>
    </widget>
    <widget class="QDialogButtonBox" name="buttonBox">
