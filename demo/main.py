@@ -1,11 +1,12 @@
-from PyQt6 import QtWidgets, uic
+from PyQt6 import QtCore, QtWidgets, uic
 
 import sys
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi("interface.ui", self)
+        ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/interface.ui"
+        uic.loadUi(ui_path, self)
 
         self.incButton.clicked.connect(self.increment)
 
