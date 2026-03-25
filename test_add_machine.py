@@ -8,7 +8,7 @@ class AddMachine(QtWidgets.QDialog):
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Add_machine.ui"
         ui_file_info = QtCore.QFileInfo(ui_path) #Crée un objet qui contient des informations du path car .exists() a besoin d'un objet QFileInfo pour vérifier l'existence du fichier
         if not ui_file_info.exists(): 
-            print(f"Error: UI file not found at {ui_path}") #Revois une Error si le fichier n'existe pas
+            print(f"Error: UI file not found at {ui_path}") #Renvois une Error si le fichier n'existe pas
         uic.loadUi(ui_path, self)
         self.setWindowTitle("Add Machine")
 
