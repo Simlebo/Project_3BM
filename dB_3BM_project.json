@@ -371,22 +371,22 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "name",
-                                        "FieldType": "TEXT",
+                                        "FieldName": "price_brut",
+                                        "FieldType": "REAL",
                                         "FieldLength": "",
                                         "Unique": false,
-                                        "NotNull": false,
+                                        "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
                                 },
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "price_brut",
-                                        "FieldType": "INTEGER",
+                                        "FieldName": "name",
+                                        "FieldType": "TEXT",
                                         "FieldLength": "",
                                         "Unique": false,
-                                        "NotNull": true,
+                                        "NotNull": false,
                                         "FKTable": "",
                                         "FKField": ""
                                 },

@@ -33,8 +33,8 @@ def createAllTables():
 			(
 				product_id INTEGER NOT NULL,
 				price REAL NOT NULL,
+				price_brut REAL NOT NULL,
 				name TEXT,
-				price_brut INTEGER NOT NULL,
 				PRIMARY KEY (product_id)
 			)
 			''')
@@ -147,8 +147,8 @@ def createTables_product():
 			(
 				product_id INTEGER NOT NULL,
 				price REAL NOT NULL,
+				price_brut REAL NOT NULL,
 				name TEXT,
-				price_brut INTEGER NOT NULL,
 				PRIMARY KEY (product_id)
 			)
 			''')
@@ -267,11 +267,11 @@ def insert_users(users_id,name,mail):
 	conn.close()
 
 # INSERT INTO product
-def insert_product(product_id,price,name,price_brut):
+def insert_product(product_id,price,price_brut,name):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
-	sqlQuery="INSERT OR IGNORE INTO product (product_id,price,name,price_brut) "
-	sqlQuery+=f"VALUES ({product_id},{price},'{name}',{price_brut})"
+	sqlQuery="INSERT OR IGNORE INTO product (product_id,price,price_brut,name) "
+	sqlQuery+=f"VALUES ({product_id},{price},{price_brut},'{name}')"
 	cur.execute(sqlQuery)
 	conn.commit()
 	conn.close()
@@ -356,7 +356,7 @@ def select_users(WHERE):
 def select_product(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
-	sqlQuery="SELECT product_id,price,name,price_brut FROM product"
+	sqlQuery="SELECT product_id,price,price_brut,name FROM product"
 	if WHERE.strip()!="":
 		sqlQuery+=f" WHERE {WHERE}"
 	cur.execute(sqlQuery)
@@ -453,10 +453,10 @@ def update_users(users_id,name,mail,WHERE):
 	conn.close()
 
 # UPDATE product SET fields=value WHERE condition
-def update_product(product_id,price,name,price_brut,WHERE):
+def update_product(product_id,price,price_brut,name,WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
-	sqlQuery=f"UPDATE product SET product_id = {product_id},price = {price},name='{name}',price_brut = {price_brut}"
+	sqlQuery=f"UPDATE product SET product_id = {product_id},price = {price},price_brut = {price_brut},name='{name}'"
 	if WHERE.strip()!="":
 		sqlQuery+=f" WHERE {WHERE}"
 	cur.execute(sqlQuery)
