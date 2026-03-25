@@ -382,10 +382,10 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "",
+                                        "FieldName": "price_brut",
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
-                                        "Unique": true,
+                                        "Unique": false,
                                         "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
