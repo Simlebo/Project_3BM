@@ -1,4 +1,5 @@
 from PyQt6 import QtCore, QtWidgets, uic
+import sqlite3
 import sys
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -15,3 +16,4 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()   
     sys.exit(app.exec())
+#chiant
