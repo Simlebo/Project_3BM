@@ -18,6 +18,17 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
+                                        "FieldName": "customer_id",
+                                        "FieldType": "INTEGER",
+                                        "FieldLength": "",
+                                        "Unique": true,
+                                        "NotNull": true,
+                                        "FKTable": "customer",
+                                        "FKField": "customer_id"
+                                },
+                                {
+                                        "Auto": false,
+                                        "PK": false,
                                         "FieldName": "date",
                                         "FieldType": "DATETIME",
                                         "FieldLength": "",
@@ -25,17 +36,6 @@
                                         "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
-                                },
-                                {
-                                        "Auto": false,
-                                        "PK": false,
-                                        "FieldName": "",
-                                        "FieldType": "INTEGER",
-                                        "FieldLength": "",
-                                        "Unique": true,
-                                        "NotNull": true,
-                                        "FKTable": "Customer",
-                                        "FKField": "Customer_id"
                                 },
                                 {
                                         "Auto": false,
@@ -137,8 +137,8 @@
                                         "FieldLength": "",
                                         "Unique": true,
                                         "NotNull": true,
-                                        "FKTable": "customer_order",
-                                        "FKField": "order_id"
+                                        "FKTable": "",
+                                        "FKField": ""
                                 },
                                 {
                                         "Auto": false,
@@ -360,17 +360,6 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "step_id",
-                                        "FieldType": "INTEGER",
-                                        "FieldLength": "",
-                                        "Unique": true,
-                                        "NotNull": true,
-                                        "FKTable": "fabrication_step",
-                                        "FKField": "step_id"
-                                },
-                                {
-                                        "Auto": false,
-                                        "PK": false,
                                         "FieldName": "price",
                                         "FieldType": "REAL",
                                         "FieldLength": "",
@@ -387,6 +376,17 @@
                                         "FieldLength": "",
                                         "Unique": false,
                                         "NotNull": false,
+                                        "FKTable": "",
+                                        "FKField": ""
+                                },
+                                {
+                                        "Auto": false,
+                                        "PK": false,
+                                        "FieldName": "",
+                                        "FieldType": "INTEGER",
+                                        "FieldLength": "",
+                                        "Unique": true,
+                                        "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
                                 },
@@ -474,13 +474,24 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "step_name",
-                                        "FieldType": "TEXT",
+                                        "FieldName": "product_id",
+                                        "FieldType": "INTEGER",
                                         "FieldLength": "",
-                                        "Unique": false,
+                                        "Unique": true,
                                         "NotNull": true,
-                                        "FKTable": "",
-                                        "FKField": ""
+                                        "FKTable": "product",
+                                        "FKField": "product_id"
+                                },
+                                {
+                                        "Auto": false,
+                                        "PK": false,
+                                        "FieldName": "machine_id",
+                                        "FieldType": "INTEGER",
+                                        "FieldLength": "",
+                                        "Unique": true,
+                                        "NotNull": true,
+                                        "FKTable": "machine",
+                                        "FKField": "machine_id"
                                 },
                                 {
                                         "Auto": false,
@@ -507,22 +518,11 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "",
-                                        "FieldType": "INTEGER",
+                                        "FieldName": "step_name",
+                                        "FieldType": "TEXT",
                                         "FieldLength": "",
                                         "Unique": false,
-                                        "NotNull": false,
-                                        "FKTable": "",
-                                        "FKField": ""
-                                },
-                                {
-                                        "Auto": false,
-                                        "PK": false,
-                                        "FieldName": "",
-                                        "FieldType": "INTEGER",
-                                        "FieldLength": "",
-                                        "Unique": false,
-                                        "NotNull": false,
+                                        "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
                                 },
@@ -588,13 +588,13 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "step_id",
+                                        "FieldName": "user_id",
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
                                         "Unique": true,
                                         "NotNull": true,
-                                        "FKTable": "fabrication_step",
-                                        "FKField": "step_id"
+                                        "FKTable": "users",
+                                        "FKField": "users_id"
                                 },
                                 {
                                         "Auto": false,
@@ -702,17 +702,6 @@
                                 {
                                         "Auto": false,
                                         "PK": false,
-                                        "FieldName": "machine_id",
-                                        "FieldType": "INTEGER",
-                                        "FieldLength": "",
-                                        "Unique": true,
-                                        "NotNull": true,
-                                        "FKTable": "machine",
-                                        "FKField": "machine_id"
-                                },
-                                {
-                                        "Auto": false,
-                                        "PK": false,
                                         "FieldName": "name",
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
@@ -729,6 +718,17 @@
                                         "FieldLength": "",
                                         "Unique": false,
                                         "NotNull": false,
+                                        "FKTable": "",
+                                        "FKField": ""
+                                },
+                                {
+                                        "Auto": false,
+                                        "PK": false,
+                                        "FieldName": "",
+                                        "FieldType": "INTEGER",
+                                        "FieldLength": "",
+                                        "Unique": true,
+                                        "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
                                 },
