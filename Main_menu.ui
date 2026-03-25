@@ -91,6 +91,19 @@
     <string>TextLabel</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="Add_pieces">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>250</y>
+     <width>111</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add Pices</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
