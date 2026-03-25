@@ -49,11 +49,14 @@
   <widget class="QPlainTextEdit" name="plainTextEdit">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>340</x>
      <y>10</y>
      <width>51</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Chart</string>
@@ -68,6 +71,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>First name</string>
    </property>
@@ -81,6 +87,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Last Name</string>
    </property>
@@ -93,6 +102,9 @@
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Account Number</string>
@@ -116,6 +128,9 @@
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Chose piece 1</string>
@@ -169,6 +184,9 @@
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Chose piece 2</string>
@@ -236,6 +254,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Chose piece 4</string>
    </property>
@@ -269,6 +290,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Chose piece</string>
    </property>
@@ -281,6 +305,9 @@
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Chose piece 8</string>
@@ -315,6 +342,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Chose piece 6</string>
    </property>
@@ -337,6 +367,9 @@
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Chose piece 7</string>
@@ -381,6 +414,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Chose piece 5</string>
    </property>
@@ -408,7 +444,7 @@
   <widget class="QPushButton" name="Place_order">
    <property name="geometry">
     <rect>
-     <x>450</x>
+     <x>540</x>
      <y>110</y>
      <width>151</width>
      <height>61</height>
@@ -416,6 +452,45 @@
    </property>
    <property name="text">
     <string>Place my order</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Show_price">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>110</y>
+     <width>151</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Show total price</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Total_price">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>180</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Total price</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Exit_menu">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>10</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit to main menu</string>
    </property>
   </widget>
  </widget>

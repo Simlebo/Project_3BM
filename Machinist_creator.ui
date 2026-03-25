@@ -22,6 +22,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Create machinist</string>
    </property>
@@ -58,6 +61,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>E-mail adress</string>
    </property>
@@ -80,6 +86,9 @@
      <width>104</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
    <property name="plainText">
     <string>Create_id</string>
