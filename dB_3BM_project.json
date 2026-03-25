@@ -1,6 +1,6 @@
 {
         "driver": "QSQLITE",
-        "name": "dB_3BM_project",
+        "name": "dB_3BM_Project",
         "tables": [
                 {
                         "customer_order": [
@@ -372,7 +372,7 @@
                                         "Auto": false,
                                         "PK": false,
                                         "FieldName": "price",
-                                        "FieldType": "INTEGER",
+                                        "FieldType": "REAL",
                                         "FieldLength": "",
                                         "Unique": false,
                                         "NotNull": true,
@@ -613,9 +613,9 @@
                                         "FieldName": "",
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
-                                        "Unique": true,
-                                        "NotNull": true,
-                                        "FKTable": "users",
+                                        "Unique": false,
+                                        "NotNull": false,
+                                        "FKTable": "",
                                         "FKField": ""
                                 },
                                 {
@@ -717,7 +717,7 @@
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
                                         "Unique": false,
-                                        "NotNull": false,
+                                        "NotNull": true,
                                         "FKTable": "",
                                         "FKField": ""
                                 },
