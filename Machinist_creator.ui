@@ -130,6 +130,19 @@
     <string>Enter</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="Exit_menu">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>210</y>
+     <width>111</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Exit to main menu</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
