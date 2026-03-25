@@ -28,10 +28,10 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(320, 240, 151, 20))
+        self.label.setGeometry(QRect(360, 240, 49, 16))
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(270, 280, 251, 26))
+        self.pushButton.setGeometry(QRect(350, 280, 81, 26))
         self.buttonBox = QDialogButtonBox(self.centralwidget)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(310, 310, 168, 26))
@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText("")
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Push to show Hello World", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
     # retranslateUi
 
