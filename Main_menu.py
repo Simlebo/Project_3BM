@@ -1,13 +1,17 @@
 from PyQt6 import QtCore, QtWidgets, uic
 import sqlite3
 import sys
+from datetime import date
 
 class Main_menu(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Main_menu.ui"
         uic.loadUi(ui_path, self)
+
         self.setWindowTitle("Main Menu")
+        self.Dates_jour.setText(date.today().isoformat())
+        
         self.Add_machine.clicked.connect(self.add_machine)
         self.Add_pieces.clicked.connect(self.add_pieces)
         self.Create_order.clicked.connect(self.Chart_creator)
