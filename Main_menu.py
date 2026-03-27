@@ -9,6 +9,8 @@ class Main_menu(QtWidgets.QDialog):
         uic.loadUi(ui_path, self)
         self.Add_machine.clicked.connect(self.add_machine)
         self.Add_pieces.clicked.connect(self.add_pieces)
+        self.Create_order.clicked.connect(self.Chart_creator)
+        self.Add_machinist.clicked.connect(self.Machinist_creator)
 
     def add_machine(self):
         self.close()
@@ -28,11 +30,12 @@ class Main_menu(QtWidgets.QDialog):
         self.create_orders = Chart_creator()
         self.create_orders.show()   
 
-    def add_machine(self):
+    def Machinist_creator(self):
         self.close()
-        from test_add_machine import AddMachine
-        self.create_orders = AddMachine()
+        from Machinist_creator import Machinist_creator
+        self.create_orders = Machinist_creator()
         self.create_orders.show()
+    
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
