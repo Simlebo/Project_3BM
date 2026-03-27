@@ -6,11 +6,33 @@ class Main_menu(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Main_menu.ui"
-        ui_file_info = QtCore.QFileInfo(ui_path) #Crée un objet qui contient des informations du path car .exists() a besoin d'un objet QFileInfo pour vérifier l'existence du fichier
-        if not ui_file_info.exists(): 
-            print(f"Error: UI file not found at {ui_path}") #Renvois une Error si le fichier n'existe pas
         uic.loadUi(ui_path, self)
-        self.setWindowTitle("Add Machine")
+        self.Add_machine.clicked.connect(self.add_machine)
+        self.Add_pieces.clicked.connect(self.add_pieces)
+
+    def add_machine(self):
+        self.close()
+        from test_add_machine import AddMachine
+        self.create_orders = AddMachine()
+        self.create_orders.show()
+    
+    def add_pieces(self):
+        self.close()
+        from Add_Pieces import Add_Pieces
+        self.create_orders = Add_Pieces()
+        self.create_orders.show()   
+
+    def Chart_creator(self):
+        self.close()
+        from Chart_creator import Chart_creator
+        self.create_orders = Chart_creator()
+        self.create_orders.show()   
+
+    def add_machine(self):
+        self.close()
+        from test_add_machine import AddMachine
+        self.create_orders = AddMachine()
+        self.create_orders.show()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])

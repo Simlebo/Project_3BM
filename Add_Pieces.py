@@ -2,14 +2,14 @@ from PyQt6 import QtCore, QtWidgets, uic
 import sqlite3
 import sys
 
-class Machinist_creator(QtWidgets.QDialog):
+class Add_Pieces(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
-        ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Machinist_creator.ui"
+        ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Add_Pieces.ui"
         uic.loadUi(ui_path, self)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
-    window = Machinist_creator()
+    window = Add_Pieces()
     window.show()
     sys.exit(app.exec())
