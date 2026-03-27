@@ -12,11 +12,17 @@ class Main_menu(QtWidgets.QDialog):
         self.setWindowTitle("Main Menu")
         self.Dates_jour.setText(date.today().isoformat())
         
+        self.view_elec.clicked.connect(self.create_tables)
         self.Add_machine.clicked.connect(self.add_machine)
         self.Add_pieces.clicked.connect(self.add_pieces)
         self.Create_order.clicked.connect(self.Chart_creator)
         self.Add_machinist.clicked.connect(self.Machinist_creator)
 
+    def create_tables(self):
+        from dB_3BM_Project import createAllTables
+        createAllTables()
+    
+    
     def add_machine(self):
         self.close()
         from test_add_machine import AddMachine
