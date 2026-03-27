@@ -18,7 +18,10 @@ class Machinist_creator(QtWidgets.QDialog):
         machinist_email = self.Machinist_specialty.text()
         machinist_id = self.Machinist_id.text()
 
-        
+        conn = sqlite3.connect("dB_3BM_Project.db")
+        cursor = conn.cursor()      
+
+
 
 
 

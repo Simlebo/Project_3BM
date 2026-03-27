@@ -1,13 +1,7 @@
-# Module gÃ©nÃ©rÃ© par GenDB.py
+# Module généré par GenDB.py
 #===========================
 import sqlite3
-from datetime import datetime
 from PySide6.QtSql import QSqlDatabase, QSqlTableModel
-
-def dqte_du_jour():
-    """Retourne la date du jour au format ISO (YYYY-MM-DD)."""
-    return datetime.now().date().isoformat()
-
 
 def createAllTables():
 	conn = sqlite3.connect("dB_3BM_Project.db")
@@ -525,7 +519,7 @@ def update_fabrication_step(step_id,product_id,machine_id,fabrication_step,time,
 	conn.close()
 
 # DELETE FROM electricity_price WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_electricity_price(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -537,7 +531,7 @@ def delete_electricity_price(WHERE):
 	conn.close()
 
 # DELETE FROM users WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_users(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -549,7 +543,7 @@ def delete_users(WHERE):
 	conn.close()
 
 # DELETE FROM product WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_product(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -561,7 +555,7 @@ def delete_product(WHERE):
 	conn.close()
 
 # DELETE FROM customer WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_customer(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -573,7 +567,7 @@ def delete_customer(WHERE):
 	conn.close()
 
 # DELETE FROM customer_order WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_customer_order(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -585,7 +579,7 @@ def delete_customer_order(WHERE):
 	conn.close()
 
 # DELETE FROM order_details WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_order_details(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -597,7 +591,7 @@ def delete_order_details(WHERE):
 	conn.close()
 
 # DELETE FROM machine WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_machine(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -609,7 +603,7 @@ def delete_machine(WHERE):
 	conn.close()
 
 # DELETE FROM fabrication_step WHERE condition 
-# ATTENTION : Si pas de condition ("") efface toutes les donnï¿½es de la table !!!
+# ATTENTION : Si pas de condition ("") efface toutes les données de la table !!!
 def delete_fabrication_step(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -621,7 +615,7 @@ def delete_fabrication_step(WHERE):
 	conn.close()
 
 # DROP TABLE electricity_price
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_electricity_price():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -631,7 +625,7 @@ def drop_electricity_price():
 	conn.close()
 
 # DROP TABLE users
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_users():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -641,7 +635,7 @@ def drop_users():
 	conn.close()
 
 # DROP TABLE product
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_product():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -651,7 +645,7 @@ def drop_product():
 	conn.close()
 
 # DROP TABLE customer
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_customer():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -661,7 +655,7 @@ def drop_customer():
 	conn.close()
 
 # DROP TABLE customer_order
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_customer_order():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -671,7 +665,7 @@ def drop_customer_order():
 	conn.close()
 
 # DROP TABLE order_details
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_order_details():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -681,7 +675,7 @@ def drop_order_details():
 	conn.close()
 
 # DROP TABLE machine
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_machine():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
@@ -691,7 +685,7 @@ def drop_machine():
 	conn.close()
 
 # DROP TABLE fabrication_step
-# ATTENTION : cette fonction dï¿½truit la table, elle devra (ï¿½ventuellement) ï¿½tre recrï¿½ï¿½e
+# ATTENTION : cette fonction détruit la table, elle devra (éventuellement) être recréée
 def drop_fabrication_step():
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
