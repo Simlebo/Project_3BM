@@ -8,8 +8,21 @@ class Machinist_creator(QtWidgets.QDialog):
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Machinist_creator.ui"
         uic.loadUi(ui_path, self)
         self.setWindowTitle("Add Machinist")
+
+        self.Enter.clicked.connect(self.add_machinist_to_db)
         self.Exit_menu.clicked.connect(self.back_to_main_menu)
     
+
+    def add_machinist_to_db(self):
+        machinist_name = self.Machinist_name.text()
+        machinist_email = self.Machinist_specialty.text()
+        machinist_id = self.Machinist_id.text()
+
+        
+
+
+
+
 
     def back_to_main_menu(self):
         self.close()

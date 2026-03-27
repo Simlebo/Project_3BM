@@ -117,7 +117,7 @@
     <string>Error</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="Enter">
    <property name="geometry">
     <rect>
      <x>360</x>
