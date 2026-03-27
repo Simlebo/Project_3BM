@@ -21,17 +21,6 @@ class AddMachine(QtWidgets.QDialog):
         self.create_orders = Main_menu()
         self.create_orders.show()
 
-    def add_machine_to_db(self):
-        machine_name = self.Machine_name.text()
-        machine_type = self.Machine_type.text()
-        machine_status = self.Machine_status.text()
-
-        conn = sqlite3.connect("dB_3BM_Project.db")
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO Machines (name, type, status) VALUES (?, ?, ?)", (machine_name, machine_type, machine_status))
-        conn.commit()
-        conn.close()
-
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
