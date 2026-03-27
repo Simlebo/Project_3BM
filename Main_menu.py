@@ -7,6 +7,7 @@ class Main_menu(QtWidgets.QDialog):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Main_menu.ui"
         uic.loadUi(ui_path, self)
+        self.setWindowTitle("Main Menu")
         self.Add_machine.clicked.connect(self.add_machine)
         self.Add_pieces.clicked.connect(self.add_pieces)
         self.Create_order.clicked.connect(self.Chart_creator)

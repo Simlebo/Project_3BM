@@ -7,6 +7,7 @@ class Machinist_creator(QtWidgets.QDialog):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Machinist_creator.ui"
         uic.loadUi(ui_path, self)
+        self.setWindowTitle("Add Machinist")
         self.Exit_menu.clicked.connect(self.back_to_main_menu)
     
 

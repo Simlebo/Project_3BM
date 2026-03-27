@@ -7,6 +7,7 @@ class Chart_creator(QtWidgets.QDialog):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Chart_creator.ui"
         uic.loadUi(ui_path, self)
+        self.setWindowTitle("Chart Creator")
         self.Exit_menu.clicked.connect(self.back_to_main_menu)
     
     def back_to_main_menu(self):

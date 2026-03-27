@@ -7,6 +7,7 @@ class Add_Pieces(QtWidgets.QDialog):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Add_Pieces.ui"
         uic.loadUi(ui_path, self)
+        self.setWindowTitle("Add Pieces")
         self.Exit_Menu.clicked.connect(self.back_to_main_menu)
 
     def back_to_main_menu(self):
