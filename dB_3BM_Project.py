@@ -21,8 +21,8 @@ def createAllTables():
 			CREATE TABLE IF NOT EXISTS users
 			(
 				users_id INTEGER NOT NULL,
-				name INTEGER NOT NULL,
-				mail INTEGER,
+				name TEXT NOT NULL,
+				mail TEXT,
 				PRIMARY KEY (users_id)
 			)
 			''')
@@ -130,8 +130,8 @@ def createTables_users():
 			CREATE TABLE IF NOT EXISTS users
 			(
 				users_id INTEGER NOT NULL,
-				name INTEGER NOT NULL,
-				mail INTEGER,
+				name TEXT NOT NULL,
+				mail TEXT,
 				PRIMARY KEY (users_id)
 			)
 			''')
@@ -261,7 +261,7 @@ def insert_users(users_id,name,mail):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
 	sqlQuery="INSERT OR IGNORE INTO users (users_id,name,mail) "
-	sqlQuery+=f"VALUES ({users_id},{name},{mail})"
+	sqlQuery+=f"VALUES ({users_id},'{name}','{mail}')"
 	cur.execute(sqlQuery)
 	conn.commit()
 	conn.close()
@@ -445,7 +445,7 @@ def update_electricity_price(date,price,WHERE):
 def update_users(users_id,name,mail,WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
 	cur = conn.cursor()
-	sqlQuery=f"UPDATE users SET users_id = {users_id},name = {name},mail = {mail}"
+	sqlQuery=f"UPDATE users SET users_id = {users_id},name='{name}',mail='{mail}'"
 	if WHERE.strip()!="":
 		sqlQuery+=f" WHERE {WHERE}"
 	cur.execute(sqlQuery)
