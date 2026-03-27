@@ -11,6 +11,14 @@ class AddMachine(QtWidgets.QDialog):
             print(f"Error: UI file not found at {ui_path}") #Renvois une Error si le fichier n'existe pas
         uic.loadUi(ui_path, self)
         self.setWindowTitle("Add Machine")
+        self.Exit_main_menu.clicked.connect(self.back_to_main_menu)
+
+    def back_to_main_menu(self):
+        self.close()
+        from Main_menu import Main_menu
+        self.create_orders = Main_menu()
+        self.create_orders.show()
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
