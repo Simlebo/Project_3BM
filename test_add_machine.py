@@ -14,6 +14,15 @@ class AddMachine(QtWidgets.QDialog):
 
         self.Enter_machine.clicked.connect(self.add_machine_to_db)
         self.Exit_main_menu.clicked.connect(self.back_to_main_menu)
+    
+    def add_machine_to_db(self):
+        machine_id = self.Machine_name.toPlainText()
+        machine_consumption = self.Machine_consumption.value()
+        user_id = 11
+
+        from dB_3BM_Project import insert_machine
+        insert_machine(machine_id, user_id, machine_consumption)
+
 
     def back_to_main_menu(self):
         self.close()

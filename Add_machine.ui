@@ -52,7 +52,7 @@
     <bool>true</bool>
    </property>
    <property name="plainText">
-    <string>Machine Name</string>
+    <string>Machine iD</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="plainTextEdit_3">
