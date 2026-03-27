@@ -1,7 +1,8 @@
 # Module g�n�r� par GenDB.py
 #===========================
 import sqlite3
-from PySide6.QtSql import QSqlDatabase, QSqlTableModel
+from PyQt6.QtSql import QSqlDatabase, QSqlTableModel
+
 
 def createAllTables():
 	conn = sqlite3.connect("dB_3BM_Project.db")
