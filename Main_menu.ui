@@ -22,6 +22,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
    <property name="plainText">
     <string>Main menu</string>
    </property>
