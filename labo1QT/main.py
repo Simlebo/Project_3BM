@@ -6,11 +6,15 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/interface.ui"
         uic.loadUi(ui_path, self)
-
+        self.combobox()
         self.pushButton.clicked.connect(self.say_hello)
     def say_hello(self):
         self.label.setText("Hello, World!")
-        
+    
+    def combobox(self):
+        self.comboBox.addItem("Option 1")
+        self.comboBox.addItem("Option 2")
+        self.comboBox.addItem("Option 3")
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
     window = MainWindow()
