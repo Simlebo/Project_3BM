@@ -17,3 +17,4 @@ if __name__ == "__main__":
     window = AddMachine()
     window.show()
     sys.exit(app.exec())
+# t'es chaud
