@@ -47,30 +47,30 @@ class Add_Pieces(QtWidgets.QDialog):
 
         
         
-        #rows_step = select_fabrication_step_number()
-        #rows_step = float([x[0] for x in rows_step][0])
-        step_id_1 = 4
+        rows_step = select_fabrication_step_number()
+        rows_step = float([x[0] for x in rows_step][0])
+        step_id_1 = rows_step + 1
         machine_id_1 = float(self.Machine_combo_1.currentText())
         time_1 = float(self.Time_1.toPlainText())
         step_name_1 = self.Process_name_1.toPlainText()
         fabrication_step_1 = 1
         insert_fabrication_step(step_id_1,product_id,machine_id_1,fabrication_step_1,time_1,step_name_1)
         
+        if self.Process_name_2.toPlainText() != "":
+            step_id_2 = step_id_1 + 1
+            machine_id_2 = float(self.Machine_combo_2.currentText())
+            time_2 = float(self.Time_2.toPlainText())
+            step_name_2 = self.Process_name_2.toPlainText()
+            fabrication_step_2 = fabrication_step_1 + 1
+            insert_fabrication_step(step_id_2,product_id,machine_id_2,fabrication_step_2,time_2,step_name_2)
 
-        step_id_2 = step_id_1 + 1
-        machine_id_2 = float(self.Machine_combo_2.currentText())
-        time_2 = float(self.Time_2.toPlainText())
-        step_name_2 = self.Process_name_2.toPlainText()
-        fabrication_step_2 = fabrication_step_1 + 1
-        insert_fabrication_step(step_id_2,product_id,machine_id_2,fabrication_step_2,time_2,step_name_2)
-
-
-        step_id_3 = step_id_2 + 1
-        machine_id_3 = float(self.Machine_combo_3.currentText())
-        time_3 = float(self.Time_3.toPlainText())
-        step_name_3 = self.Process_name_3.toPlainText()
-        fabrication_step_3 = fabrication_step_2 + 1
-        insert_fabrication_step(step_id_3,product_id,machine_id_3,fabrication_step_3,time_3,step_name_3)
+        if self.Process_name_3.toPlainText() != "":
+            step_id_3 = step_id_2 + 1
+            machine_id_3 = float(self.Machine_combo_3.currentText())
+            time_3 = float(self.Time_3.toPlainText())
+            step_name_3 = self.Process_name_3.toPlainText()
+            fabrication_step_3 = fabrication_step_2 + 1
+            insert_fabrication_step(step_id_3,product_id,machine_id_3,fabrication_step_3,time_3,step_name_3)
 
 
 

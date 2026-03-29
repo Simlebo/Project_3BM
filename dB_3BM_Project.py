@@ -57,7 +57,7 @@ def createAllTables():
 			CREATE TABLE IF NOT EXISTS customer_order
 			(
 				order_id INTEGER NOT NULL,
-				customer_id INTEGER UNIQUE NOT NULL,
+				customer_id INTEGER NOT NULL,
 				date DATETIME NOT NULL,
 				PRIMARY KEY (order_id),
 				FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
@@ -69,8 +69,8 @@ def createAllTables():
 			CREATE TABLE IF NOT EXISTS order_details
 			(
 				order_detail_id INTEGER NOT NULL,
-				order_id INTEGER UNIQUE NOT NULL,
-				product_id INTEGER UNIQUE NOT NULL,
+				order_id INTEGER NOT NULL,
+				product_id INTEGER NOT NULL,
 				number INTEGER NOT NULL,
 				PRIMARY KEY (order_detail_id),
 				FOREIGN KEY (order_id) REFERENCES customer_order(order_id),
@@ -83,7 +83,7 @@ def createAllTables():
 			CREATE TABLE IF NOT EXISTS machine
 			(
 				machine_id INTEGER NOT NULL,
-				user_id INTEGER UNIQUE NOT NULL,
+				user_id INTEGER NOT NULL,
 				consumption REAL NOT NULL,
 				PRIMARY KEY (machine_id),
 				FOREIGN KEY (user_id) REFERENCES users(users_id)
@@ -95,8 +95,8 @@ def createAllTables():
 			CREATE TABLE IF NOT EXISTS fabrication_step
 			(
 				step_id INTEGER NOT NULL,
-				product_id INTEGER UNIQUE NOT NULL,
-				machine_id INTEGER UNIQUE NOT NULL,
+				product_id INTEGER NOT NULL,
+				machine_id INTEGER NOT NULL,
 				fabrication_step INTEGER NOT NULL,
 				time REAL NOT NULL,
 				step_name TEXT NOT NULL,
@@ -707,4 +707,3 @@ def drop_fabrication_step():
 	cur.execute(sqlQuery)
 	conn.commit()
 	conn.close()
-
