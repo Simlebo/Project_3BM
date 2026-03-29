@@ -353,6 +353,18 @@ def select_users(WHERE):
 	conn.close()
 	return rows
 
+def select_users_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(users_id) FROM users"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
+
+
 # SELECT fields FROM product WHERE condition
 def select_product(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
@@ -360,6 +372,16 @@ def select_product(WHERE):
 	sqlQuery="SELECT product_id,price,price_brut,name FROM product"
 	if WHERE.strip()!="":
 		sqlQuery+=f" WHERE {WHERE}"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
+def select_product_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(product_id) FROM product"
 	cur.execute(sqlQuery)
 	rows = cur.fetchall()
 	conn.commit()
@@ -379,6 +401,16 @@ def select_customer(WHERE):
 	conn.close()
 	return rows
 
+def select_customer_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(customer_id) FROM customer"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
 # SELECT fields FROM customer_order WHERE condition
 def select_customer_order(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
@@ -386,6 +418,16 @@ def select_customer_order(WHERE):
 	sqlQuery="SELECT order_id,customer_id,date FROM customer_order"
 	if WHERE.strip()!="":
 		sqlQuery+=f" WHERE {WHERE}"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
+def select_customer_order_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(order_id) FROM customer_order"
 	cur.execute(sqlQuery)
 	rows = cur.fetchall()
 	conn.commit()
@@ -405,6 +447,16 @@ def select_order_details(WHERE):
 	conn.close()
 	return rows
 
+def select_order_details_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(order_detail_id) FROM order_details"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
 # SELECT fields FROM machine WHERE condition
 def select_machine(WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")
@@ -412,6 +464,16 @@ def select_machine(WHERE):
 	sqlQuery="SELECT machine_id,user_id,consumption FROM machine"
 	if WHERE.strip()!="":
 		sqlQuery+=f" WHERE {WHERE}"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
+def select_machine_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(machine_id) FROM machine"
 	cur.execute(sqlQuery)
 	rows = cur.fetchall()
 	conn.commit()

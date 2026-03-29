@@ -41,9 +41,9 @@ class Chart_creator(QtWidgets.QDialog):
         from dB_3BM_Project import insert_customer_order
         from dB_3BM_Project import select_order_details
         from dB_3BM_Project import select_customer
-        
+        from dB_3BM_Project import select_customer_order
 
-        rows_oreder= select_order_details("")
+        rows_oreder= select_customer_order("")
         order_id = len(rows_oreder) + 1
 
 
