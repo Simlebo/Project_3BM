@@ -431,6 +431,19 @@ def select_fabrication_step(WHERE):
 	conn.close()
 	return rows
 
+def select_fabrication_step_number():
+	conn = sqlite3.connect("dB_3BM_Project.db")
+	cur = conn.cursor()
+	sqlQuery="SELECT max(step_id) FROM fabrication_step"
+	cur.execute(sqlQuery)
+	rows = cur.fetchall()
+	conn.commit()
+	conn.close()
+	return rows
+
+
+
+
 # UPDATE electricity_price SET fields=value WHERE condition
 def update_electricity_price(date,price,WHERE):
 	conn = sqlite3.connect("dB_3BM_Project.db")

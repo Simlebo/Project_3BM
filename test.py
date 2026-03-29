@@ -1,0 +1,3 @@
+from dB_3BM_Project import select_fabrication_step_number
+
+print(select_fabrication_step_number())

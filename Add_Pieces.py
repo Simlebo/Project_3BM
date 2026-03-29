@@ -36,7 +36,7 @@ class Add_Pieces(QtWidgets.QDialog):
         from dB_3BM_Project import insert_product
         from dB_3BM_Project import select_product
         from dB_3BM_Project import insert_fabrication_step
-        from dB_3BM_Project import select_fabrication_step
+        from dB_3BM_Project import select_fabrication_step_number
 
         rows = select_product("")
         product_id = len(rows) + 1
@@ -44,8 +44,12 @@ class Add_Pieces(QtWidgets.QDialog):
         price = float(self.Piece_Price.toPlainText())
         price_brut = float(self.Piece_Price_brut.toPlainText())
         insert_product(product_id,price,price_brut,name)
+
         
-        rows_step = select_fabrication_step("")
+        
+        
+        
+        rows_step = float(select_fabrication_step_number())
         step_id_1 = len(rows_step) + 1
         machine_id_1 = float(self.Machine_combo_1.currentText())
         time_1 = float(self.Time_1.toPlainText())
