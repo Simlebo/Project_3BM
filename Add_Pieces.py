@@ -25,10 +25,10 @@ class Add_Pieces(QtWidgets.QDialog):
     def combobox(self):
         from dB_3BM_Project import select_machine
         rows = select_machine("")
-        for machine_id in rows:
-            self.Machine_combo_1.addItem(str(machine_id))
-            self.Machine_combo_2.addItem(str(machine_id))
-            self.Machine_combo_3.addItem(str(machine_id))
+        for machine_id,user_id,consumption in rows:
+            self.Machine_combo_1.addItem(str(machine_id), user_id)
+            self.Machine_combo_2.addItem(str(machine_id), user_id)
+            self.Machine_combo_3.addItem(str(machine_id), user_id)
 
 
 
@@ -44,8 +44,8 @@ class Add_Pieces(QtWidgets.QDialog):
         price = float(self.Piece_Price.toPlainText())
         price_brut = float(self.Piece_Price_brut.toPlainText())
 
-        len = select_fabrication_step("")
-        step_id = len + 1
+        rows_step = select_fabrication_step("")
+        step_id = len(rows_step) + 1
         machine_id = float(self.Machine_combo_1.currentText())
         time = float(self.Time_1.toPlainText())
         step_name = self.Process_name_1.toPlainText()
@@ -53,7 +53,8 @@ class Add_Pieces(QtWidgets.QDialog):
         insert_fabrication_step(step_id,product_id,machine_id,fabrication_step,time,step_name)
         
         if self.Process_name_2.toPlainText() != "":
-            step_id = step_id + 1
+            rows_step = select_fabrication_step("")
+            step_id = len(rows_step) + 1
             machine_id = float(self.Machine_combo_2.currentText())
             time = float(self.Time_2.toPlainText())
             step_name = self.Process_name_2.toPlainText()
@@ -61,7 +62,8 @@ class Add_Pieces(QtWidgets.QDialog):
             insert_fabrication_step(step_id,product_id,machine_id,fabrication_step,time,step_name)
 
         if self.Process_name_3.toPlainText() != "":
-            step_id = step_id + 1
+            rows_step = select_fabrication_step("")
+            step_id = len(rows_step) + 1
             machine_id = float(self.Machine_combo_3.currentText())
             time = float(self.Time_3.toPlainText())
             step_name = self.Process_name_3.toPlainText()
