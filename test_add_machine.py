@@ -17,14 +17,15 @@ class AddMachine(QtWidgets.QDialog):
         self.Exit_main_menu.clicked.connect(self.back_to_main_menu)
     
     def combobox(self):
-        self.Agreed_machinist.addItem("Option 1")
-        self.Agreed_machinist.addItem("Option 2")
-        self.Agreed_machinist.addItem("11")
+        from dB_3BM_Project import select_users
+        rows = select_users("")
+        for user_id, name, mail in rows:
+            self.Agreed_machinist.addItem(name, user_id)
 
     def add_machine_to_db(self):
-        machine_id = self.Machine_name.toPlainText()
-        #machine_consumption = self.Machine_consumption.value()
-        #user_id = self.Agreed_machinist.currentText()
+        machine_id = float(self.Machine_name.toPlainText())
+        machine_consumption = float(self.Machine_consumption.value())
+        user_id = self.Agreed_machinist.currentData()
 
         from dB_3BM_Project import insert_machine
         insert_machine(machine_id, user_id, machine_consumption)
