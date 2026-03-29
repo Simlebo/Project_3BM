@@ -45,31 +45,29 @@ class Add_Pieces(QtWidgets.QDialog):
         price_brut = float(self.Piece_Price_brut.toPlainText())
 
         rows_step = select_fabrication_step("")
-        step_id = len(rows_step) + 1
-        machine_id = float(self.Machine_combo_1.currentText())
-        time = float(self.Time_1.toPlainText())
-        step_name = self.Process_name_1.toPlainText()
-        fabrication_step = 1
-        insert_fabrication_step(step_id,product_id,machine_id,fabrication_step,time,step_name)
+        step_id_1 = len(rows_step) + 1
+        machine_id_1 = float(self.Machine_combo_1.currentText())
+        time_1 = float(self.Time_1.toPlainText())
+        step_name_1 = self.Process_name_1.toPlainText()
+        fabrication_step_1 = 1
+        insert_fabrication_step(step_id_1,product_id,machine_id_1,fabrication_step_1,time_1,step_name_1)
         
-        if self.Process_name_2.toPlainText() != "":
-            rows_step = select_fabrication_step("")
-            step_id = len(rows_step) + 1
-            machine_id = float(self.Machine_combo_2.currentText())
-            time = float(self.Time_2.toPlainText())
-            step_name = self.Process_name_2.toPlainText()
-            fabrication_step = fabrication_step + 1
-            insert_fabrication_step(step_id,product_id,machine_id,fabrication_step,time,step_name)
 
-        if self.Process_name_3.toPlainText() != "":
-            rows_step = select_fabrication_step("")
-            step_id = len(rows_step) + 1
-            machine_id = float(self.Machine_combo_3.currentText())
-            time = float(self.Time_3.toPlainText())
-            step_name = self.Process_name_3.toPlainText()
-            fabrication_step = fabrication_step + 1
-            insert_fabrication_step(step_id,product_id,machine_id,fabrication_step,time,step_name)                
-        
+        step_id_2 = step_id_1 + 1
+        machine_id_2 = float(self.Machine_combo_2.currentText())
+        time_2 = float(self.Time_2.toPlainText())
+        step_name_2 = self.Process_name_2.toPlainText()
+        fabrication_step_2 = fabrication_step_1 + 1
+        insert_fabrication_step(step_id_2,product_id,machine_id_2,fabrication_step_2,time_2,step_name_2)
+
+
+        step_id_3 = step_id_2 + 1
+        machine_id_3 = float(self.Machine_combo_3.currentText())
+        time_3 = float(self.Time_3.toPlainText())
+        step_name_3 = self.Process_name_3.toPlainText()
+        fabrication_step_3 = fabrication_step_2 + 1
+        insert_fabrication_step(step_id_3,product_id,machine_id_3,fabrication_step_3,time_3,step_name_3)
+
         insert_product(product_id,price,price_brut,name)
 
 if __name__ == "__main__":
