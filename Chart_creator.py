@@ -32,6 +32,8 @@ class Chart_creator(QtWidgets.QDialog):
             self.comboBox_3.addItem(name, product_id)
             self.comboBox_2.addItem(name, product_id)
             self.comboBox_1.addItem(name, product_id)
+            self.comboBox_9.addItem(name, product_id)
+
 
     def place_chart(self):
         from dB_3BM_Project import insert_order_details
@@ -39,7 +41,6 @@ class Chart_creator(QtWidgets.QDialog):
         from dB_3BM_Project import insert_customer_order
         from dB_3BM_Project import select_order_details
         from dB_3BM_Project import select_customer
-        from dB_3BM_Project import select_customer_order
         
 
         rows_oreder= select_order_details("")
