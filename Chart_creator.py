@@ -23,6 +23,7 @@ class Chart_creator(QtWidgets.QDialog):
     def combobox(self):
         from dB_3BM_Project import select_product
         rows = select_product("")
+        
         for product_id, price,price_brut,name in rows:
             self.comboBox_8.addItem(name, product_id)
             self.comboBox_7.addItem(name, product_id)
@@ -39,25 +40,29 @@ class Chart_creator(QtWidgets.QDialog):
         from dB_3BM_Project import insert_order_details
         from dB_3BM_Project import insert_customer
         from dB_3BM_Project import insert_customer_order
-        from dB_3BM_Project import select_order_details
-        from dB_3BM_Project import select_customer
-        from dB_3BM_Project import select_customer_order
+        from dB_3BM_Project import select_order_details_number
+        from dB_3BM_Project import select_customer_number
+        from dB_3BM_Project import select_customer_order_number
 
-        rows_oreder= select_customer_order("")
-        order_id = len(rows_oreder) + 1
+        rows_order= select_customer_order_number()
+        rows_order = float([x[0] for x in rows_order][0])
+        order_id = rows_order + 1
 
 
-        rows_customers = select_customer("")
+        rows_customers = select_customer_number()
+        rows_customers = float([x[0] for x in rows_customers][0])
+
         for account_number in rows_customers:
 
             if self.Edit_Account_number.toPlainText() not in account_number:
-                customer_id = len(rows_customers) + 1
+                customer_id = rows_customers + 1
                 name = self.Edit_first_name.toPlainText() + " " + self.Edit_last_name.toPlainText()
                 account_number = self.Edit_Account_number.toPlainText()
                 insert_customer(customer_id,order_id,name,account_number)
                 break
         
-        customer_id = len(rows_customers)
+        rows_customers = select_customer_number()
+        customer_id = float([x[0] for x in rows_customers][0])
         insert_customer_order(order_id,customer_id,datetime.now())
 
         for i in range(1,9):
@@ -65,9 +70,17 @@ class Chart_creator(QtWidgets.QDialog):
             if combo.value() != 0:
                 product_id = getattr(self, f"comboBox_{i}").currentData()
                 number = getattr(self, f"spinBox_{i}").value()
-                order_detail_id = len(select_order_details("")) + 1
+                rows_order_details = select_order_details_number()
+                rows_order_details = float([x[0] for x in rows_order_details][0])
+                order_detail_id = rows_order_details + 1
             insert_order_details(order_detail_id,order_id,product_id,number)
         
+        self.Edit_first_name.clear()
+        self.Edit_last_name.clear()
+        self.Edit_Account_number.clear()
+        for i in range(1,9):
+            combo = getattr(self, f"spinBox_{i}")
+            combo.setValue(0)
 
     def back_to_main_menu(self):
         self.close()
