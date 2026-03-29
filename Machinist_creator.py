@@ -15,18 +15,20 @@ class Machinist_creator(QtWidgets.QDialog):
 
     def add_machinist_to_db(self):
         from dB_3BM_Project import select_users
-        from dB_3BM_Project import select_customer_number_users
+        from dB_3BM_Project import select_users_number
         
         machinist_name = self.Machinist_name.toPlainText()
         machinist_email = self.Email_adress.toPlainText()
 
-        rows = select_customer_number_users()
+        rows = select_users_number()
         rows = float([x[0] for x in rows][0])
         machinist_id = rows + 1
     
 
         from dB_3BM_Project import insert_users
         insert_users(machinist_id, machinist_name, machinist_email)
+        self.Email_adress.clear()
+        self.Machinist_name.clear()
 
 
 
