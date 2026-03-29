@@ -34,12 +34,14 @@ class Add_Pieces(QtWidgets.QDialog):
 
     def add_pieces_to_db(self):
         from dB_3BM_Project import insert_product
-        from dB_3BM_Project import select_product
+        from dB_3BM_Project import select_product_number
         from dB_3BM_Project import insert_fabrication_step
-        from dB_3BM_Project import select_fabrication_step_number
-
-        rows = select_product("")
-        product_id = len(rows) + 1
+        from dB_3BM_Project import select_fabrication_step_number 
+       
+       
+        rows = select_product_number()
+        rows = float([x[0] for x in rows][0])
+        product_id = rows + 1
         name = self.Piece_name.toPlainText()
         price = float(self.Piece_Price.toPlainText())
         price_brut = float(self.Piece_Price_brut.toPlainText())
@@ -71,6 +73,17 @@ class Add_Pieces(QtWidgets.QDialog):
             step_name_3 = self.Process_name_3.toPlainText()
             fabrication_step_3 = fabrication_step_2 + 1
             insert_fabrication_step(step_id_3,product_id,machine_id_3,fabrication_step_3,time_3,step_name_3)
+
+
+        self.Piece_name.clear()
+        self.Piece_Price.clear()
+        self.Piece_Price_brut.clear()   
+        self.Process_name_1.clear()
+        self.Process_name_2.clear()
+        self.Process_name_3.clear()
+        self.Time_1.clear()
+        self.Time_2.clear()
+        self.Time_3.clear()
 
 
 
