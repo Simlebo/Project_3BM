@@ -477,7 +477,7 @@
                                         "FieldName": "product_id",
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
-                                        "Unique": true,
+                                        "Unique": false,
                                         "NotNull": true,
                                         "FKTable": "product",
                                         "FKField": "product_id"
@@ -488,7 +488,7 @@
                                         "FieldName": "machine_id",
                                         "FieldType": "INTEGER",
                                         "FieldLength": "",
-                                        "Unique": true,
+                                        "Unique": false,
                                         "NotNull": true,
                                         "FKTable": "machine",
                                         "FKField": "machine_id"

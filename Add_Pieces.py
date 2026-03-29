@@ -47,10 +47,9 @@ class Add_Pieces(QtWidgets.QDialog):
 
         
         
-        
-        
-        rows_step = float(select_fabrication_step_number())
-        step_id_1 = len(rows_step) + 1
+        #rows_step = select_fabrication_step_number()
+        #rows_step = float([x[0] for x in rows_step][0])
+        step_id_1 = 4
         machine_id_1 = float(self.Machine_combo_1.currentText())
         time_1 = float(self.Time_1.toPlainText())
         step_name_1 = self.Process_name_1.toPlainText()
