@@ -50,6 +50,13 @@ class Electric_price(QtWidgets.QDialog):
         layout.addWidget(sc)
 
     def back_to_main_menu(self):
+        from dB_3BM_Project import insert_electricity_price
+        from daily_elec_price import create_entsoe_price_plot
+        data = create_entsoe_price_plot()
+
+        for timestamp, price in data.items():
+            insert_electricity_price(timestamp, price)
+
         self.close()
         from Main_menu import Main_menu
         self.create_orders = Main_menu()
