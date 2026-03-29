@@ -16,9 +16,21 @@ class Chart_creator(QtWidgets.QDialog):
         
         self.Place_order.clicked.connect(self.place_chart)
         self.Exit_menu.clicked.connect(self.back_to_main_menu)
+        self.Show_price.clicked.connect(self.show_price)
 
 
-
+    def show_price(self):
+        from dB_3BM_Project import select_product
+        total_price = 0
+        for i in range(1,9):
+            combo = getattr(self, f"spinBox_{i}")
+            if combo.value() != 0:
+                product_id = getattr(self, f"comboBox_{i}").currentData()
+                number = getattr(self, f"spinBox_{i}").value()
+                rows = select_product(f"product_id = {product_id}")
+                price = float([x[1] for x in rows][0])
+                total_price += price * number
+        self.Total_price.setText(f"Total price: {total_price}€")
     
     def combobox(self):
         from dB_3BM_Project import select_product
@@ -43,6 +55,7 @@ class Chart_creator(QtWidgets.QDialog):
         from dB_3BM_Project import select_order_details_number
         from dB_3BM_Project import select_customer_number
         from dB_3BM_Project import select_customer_order_number
+        from dB_3BM_Project import select_customer
 
         rows_order= select_customer_order_number()
         rows_order = float([x[0] for x in rows_order][0])
@@ -52,7 +65,9 @@ class Chart_creator(QtWidgets.QDialog):
         rows_customers = select_customer_number()
         rows_customers = float([x[0] for x in rows_customers][0])
 
-        for account_number in rows_customers:
+        rows = select_customer("")
+
+        for account_number in rows:
 
             if self.Edit_Account_number.toPlainText() not in account_number:
                 customer_id = rows_customers + 1
