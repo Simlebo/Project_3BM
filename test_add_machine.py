@@ -23,14 +23,16 @@ class AddMachine(QtWidgets.QDialog):
             self.Agreed_machinist.addItem(name, user_id)
 
     def add_machine_to_db(self):
-        from dB_3BM_Project import select_machine
-        rows = select_machine("")
-        machine_id = len(rows) + 1
+        from dB_3BM_Project import select_machine_number
+        rows = select_machine_number()
+        rows = float([x[0] for x in rows][0])
+        machine_id = rows + 1
         machine_consumption = float(self.Machine_consumption.value())
         user_id = self.Agreed_machinist.currentData()
 
         from dB_3BM_Project import insert_machine
         insert_machine(machine_id, user_id, machine_consumption)
+        self.Machine_consumption.clear()
 
 
     def back_to_main_menu(self):
