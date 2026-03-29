@@ -1,3 +1,6 @@
+from datetime import date
+from unicodedata import name
+
 from PyQt6 import QtCore, QtWidgets, uic
 import sqlite3
 import sys
@@ -7,9 +10,55 @@ class Chart_creator(QtWidgets.QDialog):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Chart_creator.ui"
         uic.loadUi(ui_path, self)
+
         self.setWindowTitle("Chart Creator")
         self.Exit_menu.clicked.connect(self.back_to_main_menu)
+        self.combobox()
+
+
     
+    def combobox(self):
+        from dB_3BM_Project import select_product
+        rows = select_product("")
+        for product_id, name in rows:
+            self.comboBox_1.addItem(name, product_id)
+            self.comboBox_2.addItem(name, product_id)
+            self.comboBox_3.addItem(name, product_id)
+            self.comboBox_4.addItem(name, product_id)
+            self.comboBox_5.addItem(name, product_id)
+            self.comboBox_6.addItem(name, product_id)
+            self.comboBox_7.addItem(name, product_id)
+            self.comboBox_8.addItem(name, product_id)
+
+    def place_chart(self):
+        from dB_3BM_Project import insert_order_details
+        from dB_3BM_Project import insert_customer
+        from dB_3BM_Project import insert_customer_order
+        from dB_3BM_Project import select_order_details
+        from dB_3BM_Project import select_customer
+        from dB_3BM_Project import select_customer_order
+        
+
+        rows_oreder= select_order_details("")
+        order_id = len(rows_oreder) + 1
+
+
+        rows_customers = select_customer("")
+        for account_number in rows_customers:
+
+            if self.Edit_Account_number.toPlainText() not in account_number:
+                customer_id = len(rows_customers) + 1
+                name = self.Edit_first_name.toPlainText() + " " + self.Edit_last_name.toPlainText()
+                account_number = self.Edit_Account_number.toPlainText()
+                insert_customer(customer_id,order_id,name,account_number)
+                break
+            
+
+        
+        insert_customer_order(order_id,customer_id,date)
+
+        insert_order_details(order_detail_id,order_id,product_id,number)
+
     def back_to_main_menu(self):
         self.close()
         from Main_menu import Main_menu

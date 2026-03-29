@@ -13,7 +13,7 @@ class Add_Pieces(QtWidgets.QDialog):
         self.combobox()
         self.setWindowTitle("Add Pieces")
         self.Exit_Menu.clicked.connect(self.back_to_main_menu)
-        self.Add_pieces.connect(self.add_pieces_to_db)
+        self.Add_pieces.clicked.connect(self.add_pieces_to_db)
    
     def back_to_main_menu(self):
         self.close()
@@ -26,9 +26,9 @@ class Add_Pieces(QtWidgets.QDialog):
         from dB_3BM_Project import select_machine
         rows = select_machine("")
         for machine_id in rows:
-            self.Machine_combo_1.addItem(machine_id)
-            self.Machine_combo_2.addItem(machine_id)
-            self.Machine_combo_3.addItem(machine_id)
+            self.Machine_combo_1.addItem(str(machine_id))
+            self.Machine_combo_2.addItem(str(machine_id))
+            self.Machine_combo_3.addItem(str(machine_id))
 
 
 
