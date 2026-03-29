@@ -20,7 +20,7 @@ class Chart_creator(QtWidgets.QDialog):
     def combobox(self):
         from dB_3BM_Project import select_product
         rows = select_product("")
-        for product_id, price, price_brut, name in rows:
+        for product_id, price,price_brut,name in rows:
             self.comboBox_1.addItem(name, product_id)
             self.comboBox_2.addItem(name, product_id)
             self.comboBox_3.addItem(name, product_id)
@@ -52,7 +52,8 @@ class Chart_creator(QtWidgets.QDialog):
                 account_number = self.Edit_Account_number.toPlainText()
                 insert_customer(customer_id,order_id,name,account_number)
                 break
-            
+        
+        
 
         
         insert_customer_order(order_id,customer_id,date)
