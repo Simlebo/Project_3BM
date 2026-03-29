@@ -3,11 +3,14 @@ import sqlite3
 import sys
 from datetime import date
 
+
 class Main_menu(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
         ui_path = QtCore.QFileInfo(__file__).absolutePath() + "/Main_menu.ui"
         uic.loadUi(ui_path, self)
+
+        
 
         self.setWindowTitle("Main Menu")
         self.Dates_jour.setText(date.today().isoformat())
@@ -17,6 +20,7 @@ class Main_menu(QtWidgets.QDialog):
         self.Add_pieces.clicked.connect(self.add_pieces)
         self.Create_order.clicked.connect(self.Chart_creator)
         self.Add_machinist.clicked.connect(self.Machinist_creator)
+        self.view_elec.clicked.connect(self.view_electricity_price)
 
     def create_tables(self):
         from dB_3BM_Project import createAllTables
@@ -47,6 +51,11 @@ class Main_menu(QtWidgets.QDialog):
         self.create_orders = Machinist_creator()
         self.create_orders.show()
     
+    def view_electricity_price(self):
+        self.close()
+        from test import Electric_price
+        self.create_orders = Electric_price()
+        self.create_orders.show()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
