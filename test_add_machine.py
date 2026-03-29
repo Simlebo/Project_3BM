@@ -23,7 +23,9 @@ class AddMachine(QtWidgets.QDialog):
             self.Agreed_machinist.addItem(name, user_id)
 
     def add_machine_to_db(self):
-        machine_id = float(self.Machine_name.toPlainText())
+        from dB_3BM_Project import select_machine
+        rows = select_machine("")
+        machine_id = len(rows) + 1
         machine_consumption = float(self.Machine_consumption.value())
         user_id = self.Agreed_machinist.currentData()
 
