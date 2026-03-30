@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-client = EntsoePandasClient(api_key='b9240fd6-199e-47c9-8d2e-b9de5abaa625')
+client = EntsoePandasClient(api_key='ef81833e-bb7d-4ddc-826d-9dd8c26de4ba')
 
 country_code = 'BE'
 start_date = pd.Timestamp.now(tz='Europe/Brussels')
