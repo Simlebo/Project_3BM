@@ -12,6 +12,8 @@ end_date = start_date + pd.Timedelta(days=1)
 data = client.query_day_ahead_prices(country_code, start=start_date, end=end_date)
 def create_entsoe_price_plot():
     return data
+
+
 #plt.close("all")
 #plt.figure(figsize=(10, 5))
 

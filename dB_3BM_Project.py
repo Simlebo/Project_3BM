@@ -2,7 +2,7 @@
 #===========================
 import sqlite3
 from PyQt6.QtSql import QSqlDatabase, QSqlTableModel
-
+from datetime import datetime
 
 def createAllTables():
 	conn = sqlite3.connect("dB_3BM_Project.db")
@@ -107,6 +107,7 @@ def createAllTables():
 			''')
 	conn.commit()
 	conn.close()
+
 
 def createTables_electricity_price():
 	conn = sqlite3.connect("dB_3BM_Project.db")
