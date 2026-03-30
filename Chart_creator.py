@@ -4,10 +4,11 @@ from unicodedata import name
 from PyQt6 import QtCore, QtWidgets, uic
 import sqlite3
 import sys
+import pandas as pd
 
 from dB_3BM_Project import select_customer_order
 
-
+import start_time
 
 class Chart_creator(QtWidgets.QDialog):
     def __init__(self):
@@ -24,8 +25,21 @@ class Chart_creator(QtWidgets.QDialog):
 
 
     def show_price(self):
-        from dB_3BM_Project import select_product
+        from dB_3BM_Project import select_product, select_fabrication_step, select_machine
         total_price = 0
+        total_elec_cost = 0
+        
+        now = datetime.now()
+        selected_time = self.comboBox_11.currentText()
+        hour, minute = map(int, selected_time.split(':'))
+        start_datetime = datetime(now.year, now.month, now.day, hour, minute, 0)
+        if start_datetime < now:
+            start_datetime = start_datetime.replace(day=now.day + 1) #Si la journée est finie le calcule prendras le pris de demain
+
+        base_time = pd.Timestamp(start_datetime, tz='Europe/Brussels')
+        
+        current_time_offset = 0
+        
         for i in range(1,9):
             combo = getattr(self, f"spinBox_{i}")
             if combo.value() != 0:
@@ -34,22 +48,52 @@ class Chart_creator(QtWidgets.QDialog):
                 rows = select_product(f"product_id = {product_id}")
                 price = float([x[1] for x in rows][0])
                 total_price += price * number
-        self.Total_price.setText(f"Total price: {total_price}€")
+                
+                # Get fabrication steps for this product, ordered by step
+                fab_rows = select_fabrication_step(f"product_id = {product_id} ORDER BY fabrication_step")
+                for fab_row in fab_rows:
+                    machine_id = fab_row[2]
+                    time_min = fab_row[4]  # time per unit
+                    duration = time_min * number  # total time for this step
+                    
+                    mach_rows = select_machine(f"machine_id = {machine_id}")
+                    if mach_rows:
+                        consumption = float(mach_rows[0][2]) 
+                        
+                        from daily_elec_price import get_average_electricity_price_over_period
+                        avg_price = get_average_electricity_price_over_period(current_time_offset, duration, base_time)
+                        
+                        if avg_price is not None:
+                            energy_kwh = consumption * (duration / 60)
+                            cost = energy_kwh * (avg_price / 1000)
+                            total_elec_cost += cost
+                    
+                    current_time_offset += duration
+
+        if current_time_offset > 0:
+            from daily_elec_price import get_average_electricity_price
+            overall_avg_price = get_average_electricity_price(current_time_offset, base_time)
+            self.Total_price.setText(f"Total price: {total_price:.2f}€\nElectricity cost: {total_elec_cost:.2f}€\nOverall average electricity price: {overall_avg_price:.2f} €/MWh")
+        else:
+            self.Total_price.setText(f"Total price: {total_price:.2f}€")
     
     def combobox(self):
         from dB_3BM_Project import select_product
         rows = select_product("")
         
         for product_id, price,price_brut,name in rows:
-            self.comboBox_8.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_7.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_6.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_5.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_4.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_3.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_2.addItem(f"{name} - {price}€", product_id)
             self.comboBox_1.addItem(f"{name} - {price}€", product_id)
-            self.comboBox_9.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_2.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_3.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_4.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_5.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_6.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_7.addItem(f"{name} - {price}€", product_id)
+            self.comboBox_8.addItem(f"{name} - {price}€", product_id)
+        
+        slots = start_time.gen_slot()
+        for slot in slots:
+            self.comboBox_11.addItem(slot)
 
 
     def place_chart(self):
@@ -107,17 +151,22 @@ class Chart_creator(QtWidgets.QDialog):
                 time = sum(rows[4] for rows in rows)   
                 number = getattr(self, f"spinBox_{i}").value()
                 total_time += time * number
-            total_time = total_time + total_time
 
-        now =datetime.now()
-        deadline =datetime(now.year, now.month, now.day, 17, 0, 0)
-        diff = deadline - now
-        minutes = diff.total_seconds() / 60
-        
-        if total_time > minutes:
-            self.label.setText(f"Total time: {total_time} minutes. Deadline is not possible.")
-        else:
-            self.label.setText(f"Total time: {total_time} minutes. Deadline is possible.")
+        now = datetime.now()
+        selected_time = self.comboBox_11.currentText()
+        hour, minute = map(int, selected_time.split(':'))
+        start_time = datetime(now.year, now.month, now.day, hour, minute, 0)
+        if start_time < now:
+            start_time = start_time.replace(day=now.day + 1)
+        deadline = datetime(start_time.year, start_time.month, start_time.day, 17, 0, 0)
+        time_available = (deadline - start_time).total_seconds() / 60
+
+        if total_time > time_available:
+            from alerte_timing import AlerteTiming
+            dialog = AlerteTiming()
+            result = dialog.exec()
+            if result == QtWidgets.QDialog.DialogCode.Rejected:  # Assuming Cancel is Reject
+                return
 
 
 

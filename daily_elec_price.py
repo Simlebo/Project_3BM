@@ -3,15 +3,45 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-client = EntsoePandasClient(api_key='b9240fd6-199e-47c9-8d2e-b9de5abaa625')
+client = EntsoePandasClient(api_key='ef81833e-bb7d-4ddc-826d-9dd8c26de4ba')
 
 country_code = 'BE'
-start_date = pd.Timestamp.now(tz='Europe/Brussels')
-end_date = start_date + pd.Timedelta(days=1)
 
-data = client.query_day_ahead_prices(country_code, start=start_date, end=end_date)
 def create_entsoe_price_plot():
-    return data
+    try:
+        start_date = pd.Timestamp.now(tz='Europe/Brussels')
+        end_date = start_date + pd.Timedelta(days=1)
+        data = client.query_day_ahead_prices(country_code, start=start_date, end=end_date)
+        return data
+    except Exception as e:
+        print(f"Error fetching electricity prices: {e}")
+        return None
+
+
+def get_average_electricity_price(duration_minutes, base_time=None):
+    
+    data = create_entsoe_price_plot()
+    if data is not None:
+        if base_time is None:
+            base_time = pd.Timestamp.now(tz='Europe/Brussels')
+        end_time = base_time + pd.Timedelta(minutes=duration_minutes)
+        period_data = data[(data.index >= base_time) & (data.index < end_time)]
+        if not period_data.empty:
+            return float(period_data.mean())
+    return None
+
+def get_average_electricity_price_over_period(start_offset_minutes, duration_minutes, base_time=None):
+    
+    data = create_entsoe_price_plot()
+    if data is not None:
+        if base_time is None:
+            base_time = pd.Timestamp.now(tz='Europe/Brussels')
+        start_time = base_time + pd.Timedelta(minutes=start_offset_minutes)
+        end_time = start_time + pd.Timedelta(minutes=duration_minutes)
+        period_data = data[(data.index >= start_time) & (data.index < end_time)]
+        if not period_data.empty:
+            return float(period_data.mean())
+    return None
 
 
 #plt.close("all")

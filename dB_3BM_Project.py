@@ -770,3 +770,5 @@ def drop_fabrication_step():
 	cur.execute(sqlQuery)
 	conn.commit()
 	conn.close()
+	
+
