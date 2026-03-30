@@ -60,8 +60,8 @@ class Chart_creator(QtWidgets.QDialog):
         from dB_3BM_Project import select_customer_number
         from dB_3BM_Project import select_customer_order_number
         from dB_3BM_Project import select_customer
-        from dB_3BM_Project import select_order_details
         from dB_3BM_Project import select_fabrication_step
+
 
 
         rows_order= select_customer_order_number()
@@ -97,23 +97,26 @@ class Chart_creator(QtWidgets.QDialog):
                 order_detail_id = rows_order_details + 1
             insert_order_details(order_detail_id,order_id,product_id,number)
         
-        from dB_3BM_Project import select_product
+        
         total_time = 0
         for i in range(1,9):
             combo = getattr(self, f"spinBox_{i}")
             if combo.value() != 0:
                 product_id = getattr(self, f"comboBox_{i}").currentData()
                 rows = select_fabrication_step(f"product_id = {product_id}")
-                time = sum(rows[4] for rows in rows)   
+                time = sum(rows[4] for rows in rows)
                 number = getattr(self, f"spinBox_{i}").value()
+                
                 total_time += time * number
-            total_time = total_time + total_time
 
+            total_time = total_time + total_time
+        
+        
         now =datetime.now()
         deadline =datetime(now.year, now.month, now.day, 17, 0, 0)
         diff = deadline - now
         minutes = diff.total_seconds() / 60
-        
+
         if total_time > minutes:
             self.label.setText(f"Total time: {total_time} minutes. Deadline is not possible.")
         else:
