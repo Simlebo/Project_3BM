@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from unicodedata import name
 
 from PyQt6 import QtCore, QtWidgets, uic
@@ -6,7 +6,7 @@ import sqlite3
 import sys
 import pandas as pd
 
-from dB_3BM_Project import select_customer_order
+from dB_3BM_Project import select_customer_order, select_machine, select_users
 
 import start_time
 
@@ -34,10 +34,10 @@ class Chart_creator(QtWidgets.QDialog):
         hour, minute = map(int, selected_time.split(':'))
         start_datetime = datetime(now.year, now.month, now.day, hour, minute, 0)
         if start_datetime < now:
-            start_datetime = start_datetime.replace(day=now.day + 1) #Si la journée est finie le calcule prendras le pris de demain
+            start_datetime = start_datetime + timedelta(days=1)  # Si la journée est finie le calcule prendras le pris de demain
 
         base_time = pd.Timestamp(start_datetime, tz='Europe/Brussels')
-        
+
         current_time_offset = 0
         
         for i in range(1,9):
@@ -49,16 +49,15 @@ class Chart_creator(QtWidgets.QDialog):
                 price = float([x[1] for x in rows][0])
                 total_price += price * number
                 
-                # Get fabrication steps for this product, ordered by step
                 fab_rows = select_fabrication_step(f"product_id = {product_id} ORDER BY fabrication_step")
                 for fab_row in fab_rows:
                     machine_id = fab_row[2]
-                    time_min = fab_row[4]  # time per unit
-                    duration = time_min * number  # total time for this step
+                    time_min = fab_row[4]
+                    duration = time_min * number
                     
-                    mach_rows = select_machine(f"machine_id = {machine_id}")
-                    if mach_rows:
-                        consumption = float(mach_rows[0][2]) 
+                    machine_rows = select_machine(f"machine_id = {machine_id}")
+                    if machine_rows: #if data exists in the dB
+                        consumption = float(machine_rows[0][2]) 
                         
                         from daily_elec_price import get_average_electricity_price_over_period
                         avg_price = get_average_electricity_price_over_period(current_time_offset, duration, base_time)
@@ -69,7 +68,7 @@ class Chart_creator(QtWidgets.QDialog):
                             total_elec_cost += cost
                     
                     current_time_offset += duration
-
+                    
         if current_time_offset > 0:
             from daily_elec_price import get_average_electricity_price
             overall_avg_price = get_average_electricity_price(current_time_offset, base_time)
@@ -157,7 +156,7 @@ class Chart_creator(QtWidgets.QDialog):
         hour, minute = map(int, selected_time.split(':'))
         start_time = datetime(now.year, now.month, now.day, hour, minute, 0)
         if start_time < now:
-            start_time = start_time.replace(day=now.day + 1)
+            start_time = start_time + timedelta(days=1)
         deadline = datetime(start_time.year, start_time.month, start_time.day, 17, 0, 0)
         time_available = (deadline - start_time).total_seconds() / 60
 
@@ -167,7 +166,41 @@ class Chart_creator(QtWidgets.QDialog):
             result = dialog.exec()
             if result == QtWidgets.QDialog.DialogCode.Rejected:  # Assuming Cancel is Reject
                 return
+        now = datetime.now()
+        selected_time = self.comboBox_11.currentText()
+        hour, minute = map(int, selected_time.split(':'))
+        start_datetime = datetime(now.year, now.month, now.day, hour, minute, 0)
+        if start_datetime < now:
+            start_datetime = start_datetime + timedelta(days=1)  # Si la journée est finie le calcule prendras le pris de demain
 
+        base_time = pd.Timestamp(start_datetime, tz='Europe/Brussels')
+
+        current_time_offset = 0
+        mails_to_send = []
+        for i in range(1,9):
+            combo = getattr(self, f"spinBox_{i}")
+            if combo.value() != 0:
+                product_id = getattr(self, f"comboBox_{i}").currentData()
+                number = getattr(self, f"spinBox_{i}").value()
+                product_rows = select_product(f"product_id = {product_id}")
+                product_name = product_rows[0][3] if product_rows else "Unknown"
+                rows = select_fabrication_step(f"product_id = {product_id} ORDER BY fabrication_step")
+                for fab_row in rows:
+                    machine_id = fab_row[2]
+                    machine_rows = select_machine(f"machine_id = {machine_id}")
+                    for machine_row in machine_rows:
+                        user_id = machine_row[1]
+                        mails = select_users(f"users_id = {user_id}")
+                    time_min = fab_row[4]
+                    duration = time_min * number
+                    start_time = (base_time + pd.Timedelta(minutes=current_time_offset)).to_pydatetime()
+                    mail = mails[0][2]
+                    mails_to_send.append((mail, start_time, number, product_name))
+                    current_time_offset += duration
+        file = QtCore.QFileInfo(__file__).absolutePath() + "/mail.txt"
+        with open(file, mode='w') as f:
+            for mail, start_time, number, product_name in mails_to_send:
+                f.write(f"{mail} :Vous devez commencer à {start_time} avec {number} unités de {product_name}\n")
 
 
         self.Edit_first_name.clear()

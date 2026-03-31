@@ -1,0 +1,4 @@
+alice.turner@example.com :Vous devez commencer à 2026-04-01 09:00:00+02:00 avec 2 unités de Product B
+philippe.fraiseuse@example.com :Vous devez commencer à 2026-04-01 10:00:00+02:00 avec 2 unités de Product B
+bob.tourneur@example.com :Vous devez commencer à 2026-04-01 11:30:00+02:00 avec 2 unités de Product B
+charlie.martin@example.com :Vous devez commencer à 2026-04-01 17:30:00+02:00 avec 2 unités de Product B
