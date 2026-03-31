@@ -2,6 +2,7 @@
 import sys
 import matplotlib
 matplotlib.use('QtAgg')
+from matplotlib import container
 import matplotlib.dates as mdates
 from PyQt6 import QtCore, QtWidgets, uic
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
@@ -38,6 +39,7 @@ class Electric_price(QtWidgets.QDialog):
         uic.loadUi(ui_path, self)
 
         self.pushButton.clicked.connect(self.back_to_main_menu)
+        self.pushButton_2.clicked.connect(self.calc_price)
 
         sc = MplCanvas(self, width=5, height=4, dpi=100)
 
@@ -48,6 +50,20 @@ class Electric_price(QtWidgets.QDialog):
         layout = QtWidgets.QVBoxLayout(self.plotLayout)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(sc)
+
+    def calc_price(self):
+        from dB_3BM_Project import select_electricity_price
+        rows = select_electricity_price("price < 95")
+        container = QtWidgets.QWidget()
+        layout = QtWidgets.QVBoxLayout(container)
+
+        for date, price in rows:
+            label_1 = QtWidgets.QLabel(f"Price: {price} €/MWh, Date: {date}")
+            layout.addWidget(label_1)
+
+
+        self.scrollArea.setWidget(container)
+        self.scrollArea.setWidgetResizable(True)
 
     def back_to_main_menu(self):
         from dB_3BM_Project import insert_electricity_price
