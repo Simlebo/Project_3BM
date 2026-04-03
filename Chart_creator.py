@@ -37,7 +37,7 @@ class Chart_creator(QtWidgets.QDialog):
             start_datetime = start_datetime + timedelta(days=1)  # Si la journée est finie le calcule prendras le pris de demain
 
         base_time = pd.Timestamp(start_datetime, tz='Europe/Brussels')
-
+        detail_cost = []
         current_time_offset = 0
         
         for i in range(1,9):
@@ -65,6 +65,7 @@ class Chart_creator(QtWidgets.QDialog):
                         if avg_price is not None:
                             energy_kwh = consumption * (duration / 60)
                             cost = energy_kwh * (avg_price / 1000)
+                            detail_cost.append((product_id, cost))
                             total_elec_cost += cost
                     
                     current_time_offset += duration
@@ -75,9 +76,19 @@ class Chart_creator(QtWidgets.QDialog):
             self.Total_price.setText(f"Total price: {total_price:.2f}€\nElectricity cost: {total_elec_cost:.2f}€\nOverall average electricity price: {overall_avg_price:.2f} €/MWh")
         else:
             self.Total_price.setText(f"Total price: {total_price:.2f}€")
-    
+        
+
+        for product_id, cost in detail_cost:
+            self.comboBox.addItem(f"Product ID: {product_id}, Electricity Cost: {cost:.2f}€")
+
+
     def combobox(self):
         from dB_3BM_Project import select_product
+        from dB_3BM_Project import select_electricity_price
+
+
+
+        
         rows = select_product("")
         
         for product_id, price,price_brut,name in rows:
